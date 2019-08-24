@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+
+<script>
+
+    const base = 'http://localhost:5000'
+
+    // Get all pets
+    fetch(`${base}/api/pets/get`)
+        .then(res => res.json())
+        .then((data) => {
+            console.log(data)
+        })
+
+    // Create a pet
+    fetch(`${base}/api/pets/create`, {
+        method: 'post',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            name: 'Mr Stinky',
+            age: '2',
+            species: 'Skunk'
+        })
+    })
+    .then(res => res.json())
+    .then((data) => {
+        console.log(data[data.length-1])
+    })
+
+    // Update a pets age
+    fetch(`${base}/api/pets/update`, {
+        method: 'put',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: 0,
+            name: 'Mali',
+            age: 4,
+            species: 'Cat'
+        })
+    })
+    .then(res => res.json())
+    .then((data) => {
+        console.log(data)
+    })
+
+    // Delete a pet (Mr Stinky)
+    fetch(`${base}/api/pets/delete`, {
+        method: 'delete',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: 6
+        })
+    })
+    .then(res => res.json())
+    .then((data) => {
+        console.log(data)
+    })
+
+
+</script>
+</body>
+</html>
